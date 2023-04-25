@@ -18,7 +18,7 @@ public class UserController {
      * @params:- AddUserRequest
      * */
     @PostMapping
-    public UserResponse addUser(@RequestBody AddUserRequest request){
+    public String addUser(@RequestBody AddUserRequest request){
         return userService.add(request);
     }
 
@@ -35,8 +35,4 @@ public class UserController {
             return userService.getByEmail(email);
     }
 
-//    @GetMapping
-//    public UserResponse getUserByEmail(@RequestParam String email){
-//        return userService.getByEmail(email);
-//    }
 }

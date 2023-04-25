@@ -2,7 +2,7 @@ package com.xinpenghu.ebankportal.controller;
 
 
 import com.xinpenghu.ebankportal.entity.User;
-import com.xinpenghu.ebankportal.service.JsonKafkaProducer;
+import com.xinpenghu.ebankportal.service.UserKafkaProducer;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -13,9 +13,9 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api/v1/kafka")
 public class JsonMessageController {
 
-    private final JsonKafkaProducer kafkaProducer;
+    private final UserKafkaProducer kafkaProducer;
 
-    public JsonMessageController(JsonKafkaProducer kafkaProducer) {
+    public JsonMessageController(UserKafkaProducer kafkaProducer) {
         this.kafkaProducer = kafkaProducer;
     }
 

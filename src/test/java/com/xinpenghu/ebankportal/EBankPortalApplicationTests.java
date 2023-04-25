@@ -2,10 +2,8 @@ package com.xinpenghu.ebankportal;
 
 import com.xinpenghu.ebankportal.entity.User;
 import com.xinpenghu.ebankportal.interfaces.UserRepository;
-import com.xinpenghu.ebankportal.model.UserResponse;
-import com.xinpenghu.ebankportal.service.UserService;
+import com.xinpenghu.ebankportal.service.TransactionKafkaProducer;
 import org.junit.jupiter.api.Test;
-import org.junit.platform.commons.util.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
@@ -19,15 +17,23 @@ class EBankPortalApplicationTests {
 	}
 
 	@Autowired
-	private UserRepository userRepository;
-	@Autowired
-	private UserService userService;
+	private TransactionKafkaProducer transactionKafkaProducer;
+	@Test
+	void testKafka() {
+		String message = "OHHHHHHHHHHHHHHHH";
+//		transactionKafkaProducer.sendMessage(message);
+	}
+
+
+
 
 	/*
 	 * @test :- testMongo
 	 * @Description :- Get  User Based on Email or Id
 	 * @params:-
 	 * */
+	@Autowired
+	private UserRepository userRepository;
 	@Test
 	void testMongo() {
 		String email = "figohxp@example.com";

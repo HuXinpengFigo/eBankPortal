@@ -11,16 +11,16 @@ import org.springframework.messaging.support.MessageBuilder;
 import org.springframework.stereotype.Service;
 
 @Service
-public class JsonKafkaProducer {
+public class UserKafkaProducer {
 
     @Value("${spring.kafka.topic-json.name}")
     private String topicJsonName;
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(JsonKafkaProducer.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(UserKafkaProducer.class);
 
     private final KafkaTemplate<String, User> kafkaTemplate;
 
-    public JsonKafkaProducer(KafkaTemplate<String, User> kafkaTemplate) {
+    public UserKafkaProducer(KafkaTemplate<String, User> kafkaTemplate) {
         this.kafkaTemplate = kafkaTemplate;
     }
 

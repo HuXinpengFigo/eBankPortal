@@ -7,4 +7,6 @@ public class AddUserRequest {
     public String email;
     @JsonProperty
     public String password;
+
+
 }

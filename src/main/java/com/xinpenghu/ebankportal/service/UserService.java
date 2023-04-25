@@ -14,9 +14,16 @@ public class UserService {
     @Autowired
     private UserRepository userRepository;
 
-    public UserResponse add(AddUserRequest request) {
-        User user = userRepository.save(new User(request));
-        return new UserResponse(user);
+    @Autowired
+    private UserKafkaProducer userKafkaProducer;
+
+    public String add(AddUserRequest request) {
+        if (userRepository.findUserByEmail(request.email).isEmpty()) {
+            User user = new User(request);
+            userKafkaProducer.sendMessage(new User(request));
+            return "Add User Message sent to Kafka";
+        }
+        return "User Exist, Add Fail";
     }
 
     public UserResponse getById(String id) {
