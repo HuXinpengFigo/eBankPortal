@@ -5,7 +5,7 @@ import com.xinpenghu.ebankportal.model.TransactionResponse;
 import lombok.Data;
 import lombok.experimental.Tolerate;
 import org.springframework.data.annotation.Id;
-import org.springframework.data.annotation.PersistenceCreator;
+//import org.springframework.data.annotation.PersistenceCreator;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.time.LocalDate;
@@ -41,7 +41,6 @@ public class Transaction {
         this.description = request.description;
     }
 
-    @PersistenceCreator
     public Transaction(String email,Float amount, String type,String currency, String description, LocalDate date) {
         this.email = email;
         this.amount = amount;

@@ -1,7 +1,7 @@
 package com.xinpenghu.ebankportal.service;
 
 import com.xinpenghu.ebankportal.entity.Transaction;
-import com.xinpenghu.ebankportal.interfaces.TransactionRepository;
+import com.xinpenghu.ebankportal.mongorepo.TransactionRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
