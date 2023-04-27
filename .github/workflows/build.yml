@@ -14,8 +14,7 @@ jobs:
         uses: cloudposse/github-action-docker-compose-test-run@main
         with:
           file: docker-compose.yml
-          service: app
-          command: docker ps
+          run: docker ps
 
       - name: Set up JDK
         uses: actions/setup-java@v1
