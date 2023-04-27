@@ -4,15 +4,31 @@ on:
     branches: [ master ]
 
 jobs:
-  test:
+  tests:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v3
 
-      - name: Tests
+      - name: TestDocker
         uses: cloudposse/github-action-docker-compose-test-run@main
         with:
-          file: test/docker-compose.yml
+          file: /src/test/docker-compose.yml
           service: app
-          command: /src/test/unit-tests.sh
+          command: docker ps
+
+      - name: Set up JDK
+        uses: actions/setup-java@v1
+        with:
+            java-version: '17'
+
+      - name: Cache Maven packages
+          #This action allows caching dependencies and build outputs to improve workflow execution time.
+        uses: actions/cache@v1
+        with:
+          path: ~/.m2
+          key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
+          restore-keys: ${{ runner.os }}-m2
+            #Run Tests
+      - name: Run Tests
+        run: mvn -B test
