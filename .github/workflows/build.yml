@@ -15,4 +15,4 @@ jobs:
         with:
           file: test/docker-compose.yml
           service: app
-          command: test/unit-tests.sh
+          command: /src/test/unit-tests.sh
