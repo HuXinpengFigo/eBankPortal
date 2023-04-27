@@ -13,7 +13,7 @@ jobs:
       - name: TestDocker
         uses: cloudposse/github-action-docker-compose-test-run@main
         with:
-          file: /src/test/docker-compose.yml
+          file: docker-compose.yml
           service: app
           command: docker ps
 
