@@ -133,3 +133,6 @@ TransactionController:
 Signin --> Login --> Doing operation relatied to user or transaction
 ```
 
+### CI/CD
+
+For CI/CD, this project uses `Github Action` to  verify docker file and other small tasks in CI.
