@@ -15,6 +15,10 @@ public class TransactionKafkaConsumer {
     @Autowired
     TransactionRepository transactionRepository;
 
+    /**
+     * Add transaction to database
+     * @param transaction
+     */
     @KafkaListener(topics = "${spring.kafka.topic.name}", groupId = "${spring.kafka.consumer.group-id}")
     public void consume(Transaction transaction){
         transactionRepository.save(transaction);

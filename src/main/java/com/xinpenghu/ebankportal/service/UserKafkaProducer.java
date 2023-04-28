@@ -24,6 +24,10 @@ public class UserKafkaProducer {
         this.kafkaTemplate = kafkaTemplate;
     }
 
+    /**
+     * Send message to user kafka
+     * @param data
+     */
     public void sendMessage(User data){
 
         LOGGER.info(String.format("Message sent -> %s", data.toString()));

@@ -16,9 +16,14 @@ public class JwtUserDetailsService implements UserDetailsService {
     @Autowired
     UserRepository userRepository;
 
+    /**
+     * Check if user information correct
+     * @param email
+     * @return
+     * @throws UsernameNotFoundException
+     */
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-//        String password = "12345678";
         if(userRepository.findUserByEmail(email).isPresent()) {
             String password = userRepository.findUserByEmail(email).get().getPassword();
             return new User(email, password,

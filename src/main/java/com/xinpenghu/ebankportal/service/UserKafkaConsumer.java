@@ -15,6 +15,10 @@ public class UserKafkaConsumer {
     @Autowired
     UserRepository userRepository;
 
+    /**
+     * Add user to database
+     * @param user
+     */
     @KafkaListener(topics = "${spring.kafka.topic-json.name}", groupId = "${spring.kafka.consumer.group-id}")
     public void consume(User user){
         userRepository.save(user);

@@ -26,6 +26,7 @@ public class TransactionController {
     TransactionService transactionService;
 
     /**
+     * Add transaction
      * @param request
      * @return
      */
@@ -34,11 +35,22 @@ public class TransactionController {
         return transactionService.add(request);
     }
 
+    /**
+     * Get transaction by Id
+     * @param trans_id
+     * @return
+     */
     @GetMapping
     public TransactionResponse getTransactionById(@RequestParam String trans_id) {
         return transactionService.getById(trans_id);
     }
 
+    /**
+     * Get transaction by email
+     * @param email
+     * @return
+     * @throws JsonProcessingException
+     */
     @GetMapping(value = "/email")
     public String getTransctionsByEmail(@RequestParam String email) throws JsonProcessingException {
         List<Transaction> transactions = transactionService.getAllByEmail(email);
@@ -51,6 +63,15 @@ public class TransactionController {
         return objectMapper.writeValueAsString(transactions);
     }
 
+    /**
+     * Get transaction by time period
+     * @param days
+     * @param months
+     * @param years
+     * @param email
+     * @return
+     * @throws JsonProcessingException
+     */
     @GetMapping(value = "/period")
     public String getTransctionsByPeriod(@RequestParam int days,@RequestParam int months, @RequestParam int years, @RequestParam String email) throws JsonProcessingException {
         LocalDate start = LocalDate.now().minusDays(days+1).minusMonths(months).minusYears(years);
@@ -65,6 +86,13 @@ public class TransactionController {
         return objectMapper.writeValueAsString(transactions);
     }
 
+    /**
+     * Get transactions by email and currency type
+     * @param email
+     * @param currency
+     * @return
+     * @throws JsonProcessingException
+     */
     @GetMapping(value = "/currency")
     public String getTransactionByEmailAndCurrency(@RequestParam String email, @RequestParam String currency) throws JsonProcessingException {
         List<Transaction> transactions = transactionService.getAllByEmailAndCurrency(email,currency);
@@ -77,6 +105,11 @@ public class TransactionController {
         return objectMapper.writeValueAsString(transactions);
     }
 
+    /**
+     * Get balance and exchange rate by email
+     * @param email
+     * @return
+     */
     @GetMapping(value = "/balance_and_exchange_rate")
     public BalanceAndExchangeRate getBalanceAndExchangeRate(@RequestParam String email) {
         List<Transaction> transactions = transactionService.getAllByEmail(email);

@@ -42,6 +42,11 @@ public class JwtAuthenticationController {
     @Autowired
     UserKafkaProducer userKafkaProducer;
 
+    /**
+     * Add user to backend
+     * @param signUpRequest
+     * @return
+     */
     @PostMapping(value = "/signup")
     public ResponseEntity<?> registerUser(@RequestBody JwtRequest signUpRequest) {
         if (userRepository.existsByEmail(signUpRequest.getEmail())) {
@@ -59,6 +64,12 @@ public class JwtAuthenticationController {
         return ResponseEntity.ok("User registered successfully!");
     }
 
+    /**
+     * Login through user information and get token
+     * @param authenticationRequest
+     * @return
+     * @throws Exception
+     */
     @PostMapping(value = "/login")
     public ResponseEntity<?> createAuthenticationToken(@RequestBody JwtRequest authenticationRequest)
             throws Exception {
@@ -73,6 +84,12 @@ public class JwtAuthenticationController {
         return ResponseEntity.ok(new JwtResponse(token));
     }
 
+    /**
+     * Verify user information
+     * @param username
+     * @param password
+     * @throws Exception
+     */
     private void authenticate(String username, String password) throws Exception {
         Objects.requireNonNull(username);
         Objects.requireNonNull(password);

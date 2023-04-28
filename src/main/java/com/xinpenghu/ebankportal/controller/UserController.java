@@ -11,11 +11,12 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    /*
-     * @method :- getUserByIdOrEmail
-     * @Description :- Get Current User Based on Id or Email
-     * @params:- Id, email
-     * */
+    /**
+     * Get user by Id or email
+     * @param id
+     * @param email
+     * @return
+     */
     @GetMapping
     public UserResponse getUserByIdOrEmail(@RequestParam(required = false) String id, @RequestParam(required = false) String email){
         if(id != null)

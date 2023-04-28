@@ -31,8 +31,9 @@ class EBankPortalApplicationTests {
 	 * */
 	@Test
 	void testKafka() {
-		User user = new User("figohxp@example.com", "123456");
-		userKafkaProducer.sendMessage(user);
+		User user = new User("test@example.com", "123456");
+		if(!userRepository.existsByEmail("test@example.com"))
+			userKafkaProducer.sendMessage(user);
 	}
 
 	/*

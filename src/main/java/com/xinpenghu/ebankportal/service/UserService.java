@@ -17,6 +17,11 @@ public class UserService {
     private UserKafkaProducer userKafkaProducer;
 
 
+    /**
+     * Get user by Id
+     * @param id
+     * @return
+     */
     public UserResponse getById(String id) {
         Optional<User> optionalUser = userRepository.findById(id);
         if (optionalUser.isEmpty()) {
@@ -27,6 +32,11 @@ public class UserService {
         return new UserResponse(optionalUser.get());
     }
 
+    /**
+     * Get user by email
+     * @param email
+     * @return
+     */
     public UserResponse getByEmail(String email) {
         Optional<User> optionalUser = userRepository.findUserByEmail(email);
         if (optionalUser.isEmpty()) {

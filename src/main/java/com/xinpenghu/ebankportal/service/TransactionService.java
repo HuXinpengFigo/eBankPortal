@@ -27,6 +27,12 @@ public class TransactionService {
 
     @Autowired
     private UserRepository userRepository;
+
+    /**
+     * Add transaction
+     * @param request
+     * @return
+     */
     public String add(AddTransactionRequest request) {
         if(!userRepository.existsByEmail(request.email)) {
             return "User doesn't exist!";
@@ -43,6 +49,11 @@ public class TransactionService {
         return "Add Transaction Message sent to Kafka";
     }
 
+    /**
+     * Get transaction by Id
+     * @param id
+     * @return
+     */
     public TransactionResponse getById(String id) {
         Optional<Transaction> optionalTransaction = transactionRepository.findById(id);
         if(optionalTransaction.isEmpty()) {
@@ -53,18 +64,41 @@ public class TransactionService {
         return new TransactionResponse(optionalTransaction.get());
     }
 
+    /**
+     * Get all transactions by email
+     * @param email
+     * @return
+     */
     public List<Transaction> getAllByEmail(String email) {
         return transactionRepository.findAllByEmail(email);
     }
 
+    /**
+     * Get all transactions between two Date
+     * @param start
+     * @param end
+     * @param email
+     * @return
+     */
     public List<Transaction> getAllBetweenDate(LocalDate start, LocalDate end, String email) {
         return transactionRepository.findAllByDateBetweenAndEmail(start, end, email);
     }
 
+    /**
+     * Get all transactions by email and currency type
+     * @param email
+     * @param currency
+     * @return
+     */
     public List<Transaction> getAllByEmailAndCurrency(String email, String currency) {
         return transactionRepository.findAllByEmailAndCurrency(email, currency);
     }
 
+    /**
+     * Get balance by email
+     * @param transactions
+     * @return
+     */
     public Balance getBalance(List<Transaction> transactions) {
         Float balance = (float) 0;
         Float credit = (float) 0;
@@ -82,6 +116,10 @@ public class TransactionService {
         return new Balance(balance, credit, debit);
     }
 
+    /**
+     * Get exchange rate by call API
+     * @return
+     */
     public ExchangeRate getExchangeRate() {
         String url = "https://v6.exchangerate-api.com/v6/1af5924cda5c9b070747a158/latest/HKD";
         RestTemplate restTemplate = new RestTemplate();

@@ -24,6 +24,10 @@ public class TransactionKafkaProducer {
         this.kafkaTemplate = kafkaTemplate;
     }
 
+    /**
+     * Send message to transaction kafka
+     * @param transaction
+     */
     public void sendMessage(Transaction transaction){
 
         LOGGER.info(String.format("Message sent -> %s", transaction.toString()));
