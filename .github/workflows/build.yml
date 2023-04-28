@@ -22,7 +22,7 @@ jobs:
             java-version: '17'
 
       - name: Cache Maven packages
-          #This action allows caching dependencies and build outputs to improve workflow execution time.
+        #This action allows caching dependencies and build outputs to improve workflow execution time.
         uses: actions/cache@v1
         with:
           path: ~/.m2

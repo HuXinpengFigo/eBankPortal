@@ -1,7 +1,7 @@
 package com.xinpenghu.ebankportal.service;
 
 import com.xinpenghu.ebankportal.entity.User;
-import com.xinpenghu.ebankportal.mongorepo.UserRepository;
+import com.xinpenghu.ebankportal.repository.UserRepository;
 import com.xinpenghu.ebankportal.model.UserResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

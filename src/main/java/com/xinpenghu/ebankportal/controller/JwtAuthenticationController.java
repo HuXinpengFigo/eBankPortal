@@ -7,7 +7,8 @@ import com.xinpenghu.ebankportal.config.JwtTokenUtil;
 import com.xinpenghu.ebankportal.entity.User;
 import com.xinpenghu.ebankportal.model.JwtRequest;
 import com.xinpenghu.ebankportal.model.JwtResponse;
-import com.xinpenghu.ebankportal.mongorepo.UserRepository;
+import com.xinpenghu.ebankportal.repository.UserRepository;
+import com.xinpenghu.ebankportal.service.UserKafkaProducer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -38,6 +39,9 @@ public class JwtAuthenticationController {
     @Autowired
     UserRepository userRepository;
 
+    @Autowired
+    UserKafkaProducer userKafkaProducer;
+
     @PostMapping(value = "/signup")
     public ResponseEntity<?> registerUser(@RequestBody JwtRequest signUpRequest) {
         if (userRepository.existsByEmail(signUpRequest.getEmail())) {
@@ -50,7 +54,7 @@ public class JwtAuthenticationController {
         User user = new User(signUpRequest.getEmail(),
                 passwordEncoder.encode(signUpRequest.getPassword()));
 
-        userRepository.save(user);
+        userKafkaProducer.sendMessage(user);
 
         return ResponseEntity.ok("User registered successfully!");
     }

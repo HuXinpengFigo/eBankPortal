@@ -1,0 +1,333 @@
+{
+	"info": {
+		"_postman_id": "cf877805-034d-4e23-b1c8-2905fa7be8d3",
+		"name": "SynpulseBankServer",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "GetUserById",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJmaWdvaHhwQGV4YW1wbGUuY29tIiwiZXhwIjoxNjgyNTEzMDUzLCJpYXQiOjE2ODI0OTUwNTN9.dbBMlVEbCZBpg8xb-n1g0wDSaDeQKuUYVtDuRIyRc0crEnRaePTXKzKjBdZYJNp5v0vt3NI5rpNaqGyYm56ueQ",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/user?id=644785092874bd0de67815f9",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"user"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "644785092874bd0de67815f9"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetUserByEmail",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJmaWdvaHhwQGV4YW1wbGUuY29tIiwiZXhwIjoxNjgyNTEzMDUzLCJpYXQiOjE2ODI0OTUwNTN9.dbBMlVEbCZBpg8xb-n1g0wDSaDeQKuUYVtDuRIyRc0crEnRaePTXKzKjBdZYJNp5v0vt3NI5rpNaqGyYm56ueQ",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/user?email=figohxp@example.com",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"user"
+					],
+					"query": [
+						{
+							"key": "email",
+							"value": "figohxp@example.com"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "AddTransactionRequest",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJmaWdvaHhwQGV4YW1wbGUuY29tIiwiZXhwIjoxNjgyNjY3ODg1LCJpYXQiOjE2ODI2NDk4ODV9.lU-gfsCZ8iX5ySZnC18f21nMlt9ZNAgPVLr4Uyn_QhDMQOigbI_iLNABYuyv9-qELSxPwuYmhHZuvGcZnR0CAA",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\":\"chris@example.com\",\r\n    \"amount\":100,\r\n    \"type\": \"Credit\",\r\n    \"currency\":\"HKD\",\r\n    \"description\":\"Did something\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/trans",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"trans"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetTransactionsByEmail",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJmaWdvaHhwQGV4YW1wbGUuY29tIiwiZXhwIjoxNjgyNTE3MDY0LCJpYXQiOjE2ODI0OTkwNjR9.9cylncuw57ijcFo03VPF8Wac_jr5cm2fAALNR4vkyx009zqMFNWku8SarQXuOvFGKoQE82TKvRRmsRjXeNbhnw",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/trans/email?email=chris@example.com",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"trans",
+						"email"
+					],
+					"query": [
+						{
+							"key": "email",
+							"value": "chris@example.com"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetTransactionsByPeriodAndEmail",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJmaWdvaHhwQGV4YW1wbGUuY29tIiwiZXhwIjoxNjgyNTE3MDY0LCJpYXQiOjE2ODI0OTkwNjR9.9cylncuw57ijcFo03VPF8Wac_jr5cm2fAALNR4vkyx009zqMFNWku8SarQXuOvFGKoQE82TKvRRmsRjXeNbhnw",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/trans/period?days=0&months=0&years=0&email=figohxp@example.com",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"trans",
+						"period"
+					],
+					"query": [
+						{
+							"key": "days",
+							"value": "0"
+						},
+						{
+							"key": "months",
+							"value": "0"
+						},
+						{
+							"key": "years",
+							"value": "0"
+						},
+						{
+							"key": "email",
+							"value": "figohxp@example.com"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetTransactionsByEmailAndCurrency",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJmaWdvaHhwQGV4YW1wbGUuY29tIiwiZXhwIjoxNjgyNTE3MDY0LCJpYXQiOjE2ODI0OTkwNjR9.9cylncuw57ijcFo03VPF8Wac_jr5cm2fAALNR4vkyx009zqMFNWku8SarQXuOvFGKoQE82TKvRRmsRjXeNbhnw",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/trans/currency?email=figohxp@example.com&currency=USD",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"trans",
+						"currency"
+					],
+					"query": [
+						{
+							"key": "email",
+							"value": "figohxp@example.com"
+						},
+						{
+							"key": "currency",
+							"value": "USD"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\":\"figohxp@example.com\",\r\n    \"password\":\"123456\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Signup",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\":\"figohxp@example.com\",\r\n    \"password\":\"123456\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/signup",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"signup"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetBalanceAndExchangeRateByEmail",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJmaWdvaHhwQGV4YW1wbGUuY29tIiwiZXhwIjoxNjgyNTE3MDY0LCJpYXQiOjE2ODI0OTkwNjR9.9cylncuw57ijcFo03VPF8Wac_jr5cm2fAALNR4vkyx009zqMFNWku8SarQXuOvFGKoQE82TKvRRmsRjXeNbhnw",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/trans/balance_and_exchange_rate?email=figohxp@example.com",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"trans",
+						"balance_and_exchange_rate"
+					],
+					"query": [
+						{
+							"key": "email",
+							"value": "figohxp@example.com"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

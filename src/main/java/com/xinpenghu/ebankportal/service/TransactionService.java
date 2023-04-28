@@ -4,9 +4,10 @@ import com.xinpenghu.ebankportal.entity.Balance;
 import com.xinpenghu.ebankportal.entity.ExchangeRate;
 import com.xinpenghu.ebankportal.entity.Transaction;
 import com.xinpenghu.ebankportal.model.ExchangeRateAPIResponse;
-import com.xinpenghu.ebankportal.mongorepo.TransactionRepository;
+import com.xinpenghu.ebankportal.repository.TransactionRepository;
 import com.xinpenghu.ebankportal.model.AddTransactionRequest;
 import com.xinpenghu.ebankportal.model.TransactionResponse;
+import com.xinpenghu.ebankportal.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -24,7 +25,13 @@ public class TransactionService {
     @Autowired
     private TransactionKafkaProducer transactionKafkaProducer;
 
+    @Autowired
+    private UserRepository userRepository;
     public String add(AddTransactionRequest request) {
+        if(!userRepository.existsByEmail(request.email)) {
+            return "User doesn't exist!";
+        }
+
         List<Transaction> transactions = transactionRepository.findAllByEmailAndCurrency(request.email, request.currency);
         Float balance = getBalance(transactions).getBalance();
         if(Objects.equals(request.type, "Debit") && balance < request.amount) {

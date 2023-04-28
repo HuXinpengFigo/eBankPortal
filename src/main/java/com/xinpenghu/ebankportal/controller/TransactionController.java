@@ -25,6 +25,10 @@ public class TransactionController {
     @Autowired
     TransactionService transactionService;
 
+    /**
+     * @param request
+     * @return
+     */
     @PostMapping
     public String addTransaction(@RequestBody AddTransactionRequest request) {
         return transactionService.add(request);

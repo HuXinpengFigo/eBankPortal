@@ -1,4 +1,4 @@
-package com.xinpenghu.ebankportal.mongorepo;
+package com.xinpenghu.ebankportal.repository;
 
 import com.xinpenghu.ebankportal.entity.User;
 import org.springframework.data.mongodb.repository.MongoRepository;
